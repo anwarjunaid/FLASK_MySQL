@@ -49,12 +49,8 @@ def task():
             todo = Task(title=title, desc=desc)
             db.session.add(todo)
             db.session.commit()
+            return redirect('/')
     allTodo = Task.query.all()
-    # return jsonify({
-    #     "sno": allTodo.sno,
-    #     "title": allTodo.title,
-    #     "desc": allTodo.desc
-    # })
     return render_template("index.html", allTodo = allTodo)
 
 
