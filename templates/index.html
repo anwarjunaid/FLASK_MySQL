@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container my-3">
+    <h2>Add a task</h2>
+    <form action="/" method="POST">
+        <div class="mb-3">
+            <label for="title" class="form-label">Task</label>
+            <input type="text" class="form-control" name="title" id="title">
+        </div>
+        <div class="mb-3">
+            <label for="desc" class="form-label">Description</label>
+            <input type="text" class="form-control" name="desc" id="desc">
+        </div>
+        <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+</div>
+<br><br>
+
+
+<div class="container my-3">
+    <h2>My Tasks</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">S No.</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for todo in allTodo %}
+            <tr id="todo-{{todo.sno}}">
+                <th>{{loop.index}}</th>
+                <td>{{todo.title}}</td>
+                <td>{{todo.desc}}</td>
+                <td>
+                    <a href="/update/{{todo.sno}}"><button type="button"
+                            class="btn btn-sm btn-outline-dark mx-2">Update</button></a>
+                    <a onclick="deleteTodo(`{{todo.sno}}`)"><button type="button"
+                            class="btn btn-sm btn-outline-dark">Delete</button></a>
+
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock body %}
